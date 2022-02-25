@@ -1,47 +1,34 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Head from 'next/head';
-import Link from 'next/link';
-import React from 'react';
-import { Form, Col, FormGroup, Label, Input, Button, Container } from 'reactstrap';
+import React, { useEffect } from 'react';
+import { Form, Col, Row, FormGroup, Label, Input, Button} from 'reactstrap';
 
-const Login = () => (
-    <Container>
-      <Head>
-        <title>Login</title>
-      </Head>
-      <h1>Login</h1>
-      <Form>
-        <Col md={6}>
-          <FormGroup>
-            <Label for="email">
-              Email
-            </Label>
-            <Input
-              id="email"
-              name="email"
-              placeholder="Digite seu email aqui"
-              type="email"
-            />
-          </FormGroup>
-        </Col>
-        <Col md={6}>
-          <FormGroup>
-            <Label for="password">
-              Email
-            </Label>
-            <Input
-              id="password"
-              name="password"
-              placeholder="Digite sua senha"
-              type="password"
-            />
-          </FormGroup>
-        </Col>
-        <Button color="success">
-          Entrar
-        </Button>
-      </Form>
-    </Container>
-);
+const Login = () => {
+  useEffect(() => {
+    console.log('Testando...');
+  }, []);
+  return (
+    <div className='container-login'>
+      <div className='box-login d-flex flex-column bd-highlight mb-3'>
+        <h1 className='text-center'>Login</h1>
+        
+          <Form>
+            <FormGroup>
+              <Label for="Email">
+                Email:
+              </Label>
+              <Input id="email"/>
+            </FormGroup>
+            <FormGroup>
+              <Label>
+                Senha:
+              </Label>
+              <Input />
+            </FormGroup>
+            <Button block size="lg" color="primary" type="button">ENTRAR</Button>
+          </Form>
+      </div>
+    </div>
+  )
+};
 
 export default Login;
