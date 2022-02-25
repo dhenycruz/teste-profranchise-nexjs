@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import { useContext } from 'react';
 import Head from 'next/head';
-import { Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import { Form, FormGroup, Label, Input, Alert, Button} from 'reactstrap';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
+  const { signIN, errorLogin, setErrorLogin } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
-  const handleSignIn = (data) => {
-    console.log(data) 
+  
+  const handleSignIn = async (data) => {
+    const response = await signIN(data);
   };
 
   return (
@@ -47,7 +50,10 @@ const Login = () => {
                   placeholder="Digite sua senha"
                 />
               </FormGroup>
-              <Button  block size="lg" color="primary" type="submit">ENTRAR</Button>
+                { errorLogin && (
+                 <p className='error-login'>{ errorLogin }</p>
+                )}
+              <Button block size="lg" color="primary" type="submit">ENTRAR</Button>
             </Form>
         </div>
       </div>

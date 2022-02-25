@@ -14,3 +14,8 @@
   padding: 15px;
   width: 340px;
 }
+
+.error-login {
+  color: red;
+  text-align: center;
+}
