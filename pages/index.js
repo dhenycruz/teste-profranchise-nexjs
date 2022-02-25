@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
-  const { signIN, errorLogin, setErrorLogin } = useContext(AuthContext);
+  const { signIN, errorLogin } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
   
   const handleSignIn = async (data) => {
