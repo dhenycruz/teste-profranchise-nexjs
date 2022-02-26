@@ -8,38 +8,61 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardText } from 'reactstrap';
+  CardText, 
+  CardFooter} from 'reactstrap';
 
-const CardGroupComponent = () => {
-  const mapArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const CardGroupComponent = ({ products }) => {
   return (
     <CardGroup>
       <Row xs="3">
-        { mapArray.map((item) => (
+        { products.map((product) => (
           <Col className='mb-3'>
           <Card>
             <CardImg
-              alt="Card image cap"
-              src="https://picsum.photos/318/180"
+              alt="Imagem do Produto"
+              src={ product.image }
               top
               width="100%"
             />
             <CardBody>
               <CardTitle tag="h5">
-                Card title
+                { product.name }
               </CardTitle>
               <CardSubtitle
                 className="mb-2 text-muted"
                 tag="h6"
               >
-                Card subtitle
+                R$ { product.price }
               </CardSubtitle>
               <CardText>
-                This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                <span>Ingredientes</span>
+                {
+                  product.ingredients.map((ingredient) => (
+                    <>
+                      <p>{ ingredient.name }</p>
+                      <p>Custo: {ingredient.cost }</p>
+                    </>
+                  ))}
               </CardText>
-              <Button>
-                Button
-              </Button>
+              <CardFooter>
+                <Button>
+                  Mais Detalhes
+                </Button>
+                <span className='float-end'>
+                  <img 
+                    src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-pencil-creative-kiranshastry-lineal-kiranshastry.png"
+                    alt="Editar Produto"
+                    width={ 25 }
+                  />
+                </span>
+                <span className='float-end'>
+                  <img 
+                    src="https://img.icons8.com/plasticine/100/000000/filled-trash.png"
+                    alt="Delete Produto"
+                    width={ 25 }
+                  />
+                </span>
+              </CardFooter>
             </CardBody>
           </Card>
           </Col>
