@@ -1,6 +1,6 @@
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 
-const ListProduct = ({ products, cssIngredients, toggle }) => {
+const ListProduct = ({ products, cssIngredients, toggle, toggleUpdate }) => {
   console.log(products);
   return(
     <Table bordered>
@@ -20,7 +20,6 @@ const ListProduct = ({ products, cssIngredients, toggle }) => {
           <th>
             Ingredientes
           </th>
-          <th></th>
           <th></th>
         </tr>
       </thead>
@@ -54,24 +53,22 @@ const ListProduct = ({ products, cssIngredients, toggle }) => {
               ))}
           </td>
           <td>
-            <div>
-              <img 
-                src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-pencil-creative-kiranshastry-lineal-kiranshastry.png"
-                alt="Editar Produto"
-                width={ 25 }
-              />
-            </div>
-          </td>
-          <td>
-            <div onClick={ toggle }>
-              <img 
-                src="https://img.icons8.com/plasticine/100/000000/filled-trash.png"
-                alt="Delete Produto"
-                width={ 25 }
-              />
-            </div>
+            <Button
+              outline
+              onClick={ toggleUpdate }
+              className="float-end"
+            >
+              Editar
+            </Button>
+            <Button
+              color="danger"
+              onClick={ () => toggle(2) }
+              className="float-end"
+            >
+              Deletar
+            </Button>
           </td>      
-        </tr>
+          </tr>
         ))}
       </tbody>
     </Table>

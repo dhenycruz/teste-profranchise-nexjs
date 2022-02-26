@@ -11,7 +11,7 @@ import {
   CardText, 
   CardFooter} from 'reactstrap';
 
-const CardGroupComponent = ({ products }) => {
+const CardGroupComponent = ({ products, toggle, toggleUpdate, cssButton }) => {
   return (
     <CardGroup>
       <Row xs="3">
@@ -45,23 +45,20 @@ const CardGroupComponent = ({ products }) => {
                   ))}
               </CardText>
               <CardFooter>
-                <Button>
-                  Mais Detalhes
+                <Button
+                  color="danger"
+                  onClick={ toggle }
+                  className={ `float-end ${cssButton}` }
+                >
+                  Deletar
                 </Button>
-                <span className='float-end'>
-                  <img 
-                    src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-pencil-creative-kiranshastry-lineal-kiranshastry.png"
-                    alt="Editar Produto"
-                    width={ 25 }
-                  />
-                </span>
-                <span className='float-end'>
-                  <img 
-                    src="https://img.icons8.com/plasticine/100/000000/filled-trash.png"
-                    alt="Delete Produto"
-                    width={ 25 }
-                  />
-                </span>
+                <Button
+                  outline
+                  onClick={ toggleUpdate }
+                  className="float-end"
+                >
+                  Editar
+                </Button>
               </CardFooter>
             </CardBody>
           </Card>

@@ -1,5 +1,5 @@
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-const ModalDelete = ({ toggle, deleteModal}) => {
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+const ModalDelete = ({ toggle, deleteModal, dadosDelete }) => {
   return(
     <>
     <Modal
@@ -8,11 +8,11 @@ const ModalDelete = ({ toggle, deleteModal}) => {
       fullscreen="sm"
       scrollable
       size="sm"
-      toggle={ toggle }
+      toggle={ () => toggle(dadosDelete) }
       isOpen={ deleteModal }
     >
-      <ModalHeader toggle={toggle}>
-        Deletando produto
+      <ModalHeader toggle={ () => toggle(dadosDelete) }>
+        Deletando produto id: { dadosDelete }
       </ModalHeader>
       <ModalBody>
         Tem certeza que deseja deletar esse produto?
@@ -25,7 +25,7 @@ const ModalDelete = ({ toggle, deleteModal}) => {
           Sim
         </Button>
         {' '}
-        <Button onClick={ toggle }>
+        <Button onClick={ () => toggle(dadosDelete) }>
           Não
         </Button>
       </ModalFooter>
