@@ -10,10 +10,10 @@ const login = async ({email , password}) => {
       return loggingIn;
 };
 
-const listProducts = async (token) => {
+const listProducts = async (token, query) => {
   const response = await axios({
     method: 'get',
-    url: 'https://prova.deploy.profranchising.com.br/product/list',
+    url: `https://prova.deploy.profranchising.com.br/product/list${query}`,
     headers: { 'Authorization': token }
   });
 
@@ -32,14 +32,11 @@ const saveProduct = async (bodyProduct, token) => {
 };
 
 const deleteProduct = async (id, token) => {
-  const response = await axios({
-    method: 'get',
+  await axios({
+    method: 'delete',
     url: `https://prova.deploy.profranchising.com.br/product/delete/${id}`,
-    body: { },
     headers: { 'Authorization': token }
   });
-
-  return response.data;
 };
 
 module.exports = {

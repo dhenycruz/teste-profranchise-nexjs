@@ -2,7 +2,7 @@ import style from '../styles/navegation.module.css';
 import { Button } from 'reactstrap';
 const Navigation = ({ userName, cssImg }) => {
   return (
-    <header className={ style.headerDashboard }>
+    <>
       <nav className={ style.navHeader }>
         <div className={ style.divNav}>
           <img
@@ -18,7 +18,7 @@ const Navigation = ({ userName, cssImg }) => {
         </Button>
       </div>
       </nav>
-    </header>
+    </>
   )
 };
 
