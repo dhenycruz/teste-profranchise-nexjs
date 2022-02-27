@@ -31,7 +31,7 @@ const saveProduct = async (bodyProduct, token) => {
   return response.data;
 };
 
-const deleteProduct = async (id, token) => {
+const deleteProduct = async (token, id) => {
   await axios({
     method: 'delete',
     url: `https://prova.deploy.profranchising.com.br/product/delete/${id}`,

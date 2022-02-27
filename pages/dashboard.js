@@ -11,13 +11,15 @@ import ModalDelete from '../components/ModalDelete';
 import ModalUpdateProduct from '../components/ModalUpdateProduct';
 
 export default function Dashboard ({ 
-  userName, products, totalProducts, listProducts, listTotalPages
-}) {
+  userName, dataProducts, totalProducts, listProducts, listTotalPages
+})  {
+  const [products, setProducts] = useState(dataProducts);
   const [viewProduct, setViewProduct] = useState('galery');
   const [deleteModal, setDeleteModal] = useState(false);
   const [modalInfoProd, setModalInfoProd] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
 
+  console.log(products);
   const changeViewProducts = (viewProd) => {
     setViewProduct(viewProd);
   };
@@ -123,7 +125,12 @@ export default function Dashboard ({
           ) }
         </Col>
       </Row>
-      <ModalDelete toggle={ toggleDelete } deleteModal={ deleteModal } infoProduct={ modalInfoProd } />
+      <ModalDelete
+        toggle={ toggleDelete }
+        deleteModal={ deleteModal }
+        infoProduct={ modalInfoProd }
+        setProducts={ setProducts }
+      />
       <ModalUpdateProduct toggle={ toggleUpdate } updateModal={ updateModal } infoProduct={ modalInfoProd }/>
     </main>
     <footer className={ style.footerDashboard }>
@@ -145,16 +152,16 @@ export async function getServerSideProps(context) {
       }
     }
   const { 
-    content: products,
+    content: dataProducts,
     totalElements: totalProducts,
   } =  await API(token, '?page=0&size=3');
   const resultList = await API(token, '?page=0&size=10');
   const listProducts = resultList.content;
-  const listTotalPages = resultList.number;
+  const listTotalPages = resultList.totalPages;
   return {
     props: { 
       userName,
-      products,
+      dataProducts,
       totalProducts,
       listProducts,
       listTotalPages,

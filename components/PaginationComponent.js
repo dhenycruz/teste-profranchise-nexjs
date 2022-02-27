@@ -10,7 +10,7 @@ const PaginationComponent  = ({ totalPages, setProductAll }) => {
 
   const pageClick = async (page) => {
     const { 'nextToken': token } = parseCookies();
-    const res = await Api(token, `?page=${page}&size=3`);
+    const res = await Api(token, `?page=${page}&size=10`);
     console.log(page)
     console.log(res.content);
     setProductAll(res.content);
@@ -34,8 +34,8 @@ const PaginationComponent  = ({ totalPages, setProductAll }) => {
             </PaginationLink>
           </PaginationItem>
       {
-        items.map((item) => (
-          <PaginationItem active={ false } onClick={ () => pageClick(item) }>
+        items.map((item, index) => (
+          <PaginationItem key={ index } active={ false } onClick={ () => pageClick(item) }>
             <PaginationLink>
               { item + 1 }
             </PaginationLink>

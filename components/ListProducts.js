@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const ListProduct = ({ products, toggle, toggleUpdate, totalPages }) => {
   const [productAll, setProductAll] =useState(products);
-  console.log(productAll);
   return(
     <>
       <Table hover>
@@ -28,8 +27,8 @@ const ListProduct = ({ products, toggle, toggleUpdate, totalPages }) => {
           </tr>
         </thead>
         <tbody>
-          { productAll.map((product) => (
-            <tr>
+          { productAll.map((product, index) => (
+            <tr key={ index }>
             <th scope="row">
               { product.id }
             </th>

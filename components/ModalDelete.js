@@ -1,15 +1,17 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
-import { deleteProduct as Api } from '../services/api-franchise';
+import { deleteProduct as Api, listProducts } from '../services/api-franchise';
 import { parseCookies } from 'nookies';
 
-const ModalDelete = ({ toggle, deleteModal, infoProduct }) => {
-  
+const ModalDelete = ({ toggle, deleteModal, infoProduct, setProducts }) => {
   const deleteProduct = async (id) => {
     const { 'nextToken': token } = parseCookies();
     await Api(token, id);
+    const refreshProducts = await listProducts(token, '?page=0&size=3');
+    toggle(null);
+    setProducts(refreshProducts.content);
   };
 
-  if (!infoProduct) return ( <p>Nenhum produto encontrado.</p>);
+  if (!infoProduct) return ( <></>);
   return(
     <Modal
       backdrop={ true }

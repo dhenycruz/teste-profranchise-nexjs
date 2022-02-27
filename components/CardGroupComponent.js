@@ -17,7 +17,6 @@ const CardGroupComponent = ({ products, totalProducts, toggle, toggleUpdate, css
   const getMoreProducts = async () => {
     const { 'nextToken': token } = parseCookies();
     const pageNext = `?page=${page + 1}&size=3`;
-    console.log(pageNext);
     const res = await Api(token, pageNext);
     setProductAll(productAll => [...productAll, ...res.content]);
     setPage(res.number);
