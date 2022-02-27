@@ -1,5 +1,5 @@
 import style from '../styles/dashboard.module.css';
-import { Container, Row, Col, Button, InputGroup, Input, InputGroupText } from 'reactstrap';
+import { Container, Row, Col, Button, InputGroup, Input, InputGroupText, Spinner } from 'reactstrap';
 import { useState } from 'react';
 import Head from 'next/head';
 import { parseCookies } from 'nookies';
@@ -10,16 +10,12 @@ import ListProduct from '../components/ListProducts';
 import ModalDelete from '../components/ModalDelete';
 import ModalUpdateProduct from '../components/ModalUpdateProduct';
 
-export default function Dashboard ({ 
-  userName, dataProducts, totalProducts, listProducts, listTotalPages
-})  {
-  const [products, setProducts] = useState(dataProducts);
+export default function Dashboard ({ userName, listProducts, listTotalPages, totalProducts })  {
   const [viewProduct, setViewProduct] = useState('galery');
   const [deleteModal, setDeleteModal] = useState(false);
   const [modalInfoProd, setModalInfoProd] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
-
-  console.log(products);
+  
   const changeViewProducts = (viewProd) => {
     setViewProduct(viewProd);
   };
@@ -106,30 +102,28 @@ export default function Dashboard ({
       <Row className={ style.rowMarginTop}>
         <Col>
           { (viewProduct === 'galery') ? (
-            <CardGroupComponent 
-              products={ products }
-              totalProducts={ totalProducts }
-              cssButton={ style.buttonActionProduct }
-              toggle={ toggleDelete }
-              toggleUpdate={ toggleUpdate}
-            />
-          ) : (
-            <ListProduct 
-              products={ listProducts }
-              totalPages={ listTotalPages }
-              cssIngredients={ style.ingredientsList }
-              tdProduct={ style.tdProduct }
-              toggle={ toggleDelete }
-              toggleUpdate={ toggleUpdate}
-            />
-          ) }
+              <CardGroupComponent
+                cssButton={ style.buttonActionProduct }
+                toggle={ toggleDelete }
+                toggleUpdate={ toggleUpdate}
+              />
+            ) : (
+              <ListProduct 
+                products={ listProducts }
+                totalPages={ listTotalPages }
+                totalProducts= {totalProducts}
+                cssIngredients={ style.ingredientsList }
+                tdProduct={ style.tdProduct }
+                toggle={ toggleDelete }
+                toggleUpdate={ toggleUpdate}
+              />
+            )}
         </Col>
       </Row>
       <ModalDelete
         toggle={ toggleDelete }
         deleteModal={ deleteModal }
         infoProduct={ modalInfoProd }
-        setProducts={ setProducts }
       />
       <ModalUpdateProduct toggle={ toggleUpdate } updateModal={ updateModal } infoProduct={ modalInfoProd }/>
     </main>
@@ -151,20 +145,18 @@ export async function getServerSideProps(context) {
         }
       }
     }
+ 
   const { 
-    content: dataProducts,
+    content: listProducts,
+    totalPages: listTotalPages,
     totalElements: totalProducts,
-  } =  await API(token, '?page=0&size=3');
-  const resultList = await API(token, '?page=0&size=10');
-  const listProducts = resultList.content;
-  const listTotalPages = resultList.totalPages;
+  } = await API(token, '?page=0&size=10');
   return {
     props: { 
       userName,
-      dataProducts,
-      totalProducts,
       listProducts,
       listTotalPages,
+      totalProducts,
     },
   }
 };

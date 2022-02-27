@@ -2,10 +2,11 @@ import { Table, Button, Row, Col } from "reactstrap";
 import PaginationComponent from "./PaginationComponent";
 import { useState } from "react";
 
-const ListProduct = ({ products, toggle, toggleUpdate, totalPages }) => {
+const ListProduct = ({ products, totalProducts, toggle, toggleUpdate, totalPages }) => {
   const [productAll, setProductAll] =useState(products);
   return(
     <>
+      <h3>Total de produtos: {totalProducts}</h3>
       <Table hover>
         <thead>
           <tr>

@@ -4,39 +4,41 @@ import {
   CardBody, CardTitle, CardSubtitle, CardFooter
 } from 'reactstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { parseCookies } from 'nookies';
-import { useEffect, useState } from 'react';
-import { listProducts as Api } from '../services/api-franchise';
+import { useContext, useEffect, useState } from 'react';
+import { ProductsContext } from '../context/ProductsContext';
 
-
-const CardGroupComponent = ({ products, totalProducts, toggle, toggleUpdate, cssButton }) => {
-  const [productAll, setProductAll] = useState(products);
+const CardGroupComponent = ({ toggle, toggleUpdate, cssButton }) => {
+  const { products, setProducts, totalProducts, setTotalProducts, fetchProducts } = useContext(ProductsContext);
   const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
 
   const getMoreProducts = async () => {
-    const { 'nextToken': token } = parseCookies();
     const pageNext = `?page=${page + 1}&size=3`;
-    const res = await Api(token, pageNext);
-    setProductAll(productAll => [...productAll, ...res.content]);
-    setPage(res.number);
+    const res = await fetchProducts(pageNext);
+    setProducts([...products, ...res.dataProducts]);
+    setPage(page + 1);
   };
 
-  useEffect(() =>{
-      setHasMore(totalProducts > productAll.length);
-  },[productAll]);  
+  const fetch = async () => {
+    const response = await fetchProducts('?page=0&size=3');
+    setProducts(response.dataProducts);
+    setTotalProducts(response.totalProducts);
+  }
+
+
+  useEffect(() => {
+    fetch();
+  }, []);
   return (
     <>
     <InfiniteScroll
-      dataLength={ productAll.length }
+      dataLength={ products.length }
       next={ getMoreProducts }
-      hasMore={ hasMore }
+      hasMore={ true }
       style={ { overflow: 'hidden' } }
-      loader={ <h2>Carregando...</h2>}
     >
       <CardGroup>
           <Row xs="3">
-            { productAll.map((product, index) => (
+            { products.map((product, index) => (
               <Col className='mb-3' key={index}>
               <Card>
                 <CardImg

@@ -1,14 +1,17 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import { deleteProduct as Api, listProducts } from '../services/api-franchise';
 import { parseCookies } from 'nookies';
+import { useContext } from 'react';
+import { ProductsContext } from '../context/ProductsContext';
 
-const ModalDelete = ({ toggle, deleteModal, infoProduct, setProducts }) => {
+const ModalDelete = ({ toggle, deleteModal, infoProduct }) => {
+  const { setProducts } = useContext(ProductsContext);
   const deleteProduct = async (id) => {
     const { 'nextToken': token } = parseCookies();
     await Api(token, id);
-    const refreshProducts = await listProducts(token, '?page=0&size=3');
+    const response = await listProducts(token, '?page=0&size=3');
+    setProducts(response.content);
     toggle(null);
-    setProducts(refreshProducts.content);
   };
 
   if (!infoProduct) return ( <></>);
