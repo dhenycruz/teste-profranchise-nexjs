@@ -1,4 +1,4 @@
-## Olá, eu sou o Dheniarley!
+# Teste: Criar uma aplicação FRONT-END
  
  - Esse é o repositório do teste para a empresa PROFRANCHAISE.
  - o teste tem como objetivo desenvolver uma aplicação FRONT-END
@@ -6,7 +6,7 @@
  - Essa aplicação ira resolver o cadastro de produtos e suas receitas.
  - A aplicação deve ser facil de utilizar e agradavel ao usuário.
 
-# Requisitos:
+## Requisitos:
 - Tela de login (proteger rotas)
 - Lista de itens com paginação
 - Editar item
@@ -16,7 +16,7 @@
 - Criar repositório no GitHub
 * Pode usar qualquer biblioteca que julgue necessário.
 
-Diferenciais:
+### Diferenciais:
 - Paginação Infinita
 - Typescript
 - React Query
@@ -34,9 +34,9 @@ Para realização de projeto foi utilizado:
 # Instruções para rodar o projeto localmente:
 
 1. Clone o repositório
-  * `git clone `
+  * `git clone `git@github.com:dhenycruz/teste-profranchise-next.js.git
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd `
+    * `cd `teste-profranchise-nextjs
 
 2. Instale as dependências e inicialize o projeto
   * Instale as dependências:
@@ -53,8 +53,8 @@ Para realização de projeto foi utilizado:
   * Foi criando o arquivo AuthContext.js para podermos fazer as validações das credenciais do usuário:
     * Nesse context, utilizamos o useState para armazenar se o usuário está logado ou não e um estado para guardar o retorno da API caso ela gere um erro de validação dos dados utilizados para acessar a nossa aplicação;
     * Criamos a função singIn(), ela será responsavel por fazer nosso request na API;
-      * Dentro dessa função, fizemos a requisição na api com todos dados que ela precisa (headers, data...);
-      * Após ser feita a requisição e ter tornando status 200, armazenamos nosso token em um cockie e por isso usamos a biblioteca nookies, pois também fazemos fazer a consulta desse cockie do lado do servidor;
+     * Dentro dessa função, fizemos a requisição na api com todos dados que ela precisa (headers, data...);
+     * Após ser feita a requisição e ter tornando status 200, armazenamos nosso token em um cockie e por isso usamos a biblioteca nookies, pois também fazemos fazer a consulta desse cockie do lado do servidor;
       * Tudo certo, o usuário é redirecionando para nossa página Dashboard;
   * Layout:
     * Fizemos um layout simples e intuitivo para nossa página de login, apenas com um formulário de autenticação e um titulo com o nome login;
@@ -71,9 +71,7 @@ Para realização de projeto foi utilizado:
  * Poderia ter usado React.js onde já tinha domínio, já tinha feito alguns projetos com ele, mas decidi aprender Next.js, foram dias muito desafiadores, de muito tabralho e persistência, consegui entender e desenvolver essa aplicação com Next.js, também decidi aprender a utilizar uma biblioteca para fazer o infity scroll e ficou muito legal.
 
  # Pontos de melhoria
-   - Na hora de remover, editar ou criar um novo produto, quando você fazer alguma dessas operação, a lista de produtos não é atualizada, então resolvi esse problema criando um context para o produto, onde deixei um estado global para ter essa lista de produto, então toda vez que eu fazia alguma operação, eu fazia uma chamada na api e atualizava esse estado global onde minha aplicação era renderizada novamente, mostrando a lista de produtos atualizada.
-
-    - Porém, olhando a biblioteca React Query, ela faz esse monitoramente para gente de forma mais eficiente e guardando no cache do browser consultas que algum dos componentes da nossa aplicação já tenha feito, então essa seria um dos pontos de melhoria para essa aplicação.
-
-    - E nas próximas refatorações aplicar TypeScript e fazer os teste para aplicação.
+   Na hora de remover, editar ou criar um novo produto, quando você fazer alguma dessas operação, a lista de produtos não é atualizada, então resolvi esse problema criando um context para o produto, onde deixei um estado global para ter essa lista de produto, então toda vez que eu fazia alguma operação, eu fazia uma chamada na api e atualizava esse estado global onde minha aplicação era renderizada novamente, mostrando a lista de produtos atualizada.
+   Porém, olhando a biblioteca React Query, ela faz esse monitoramente para gente de forma mais eficiente e guardando no cache do browser consultas que algum dos componentes da nossa aplicação já tenha feito, então essa seria um dos pontos de melhoria para essa aplicação.
+   Nas próximas refatorações aplicar TypeScript e fazer os teste para aplicação.
 
