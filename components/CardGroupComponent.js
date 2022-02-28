@@ -19,7 +19,7 @@ const CardGroupComponent = ({ toggle, toggleUpdate, cssButton }) => {
   };
 
   const fetch = async () => {
-    const response = await fetchProducts('?page=0&size=3');
+    const response = await fetchProducts('?page=0&size=6');
     setProducts(response.dataProducts);
     setTotalProducts(response.totalProducts);
   }

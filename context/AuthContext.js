@@ -16,7 +16,6 @@ export const AuthProvider = ({ children }) => {
       const response = await login(date);
       const { authorization: token } = response.headers;
       const { name } = response.data;
-      console.log(token);
 
       setCookie(undefined, 'nextToken', token, { maxAge: 60 * 60 * 1 /* 1 hora*/ });
       setCookie(undefined, 'userName', name, { maxAge: 60 * 60 * 1 /* 1 hora*/ });

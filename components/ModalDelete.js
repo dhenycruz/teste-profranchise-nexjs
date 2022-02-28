@@ -9,7 +9,7 @@ const ModalDelete = ({ toggle, deleteModal, infoProduct }) => {
   const deleteProduct = async (id) => {
     const { 'nextToken': token } = parseCookies();
     await Api(token, id);
-    const response = await listProducts(token, '?page=0&size=3');
+    const response = await listProducts(token, '?page=0&size=6');
     setProducts(response.content);
     toggle(null);
   };

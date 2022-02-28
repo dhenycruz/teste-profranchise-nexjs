@@ -14,7 +14,7 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
   const { setProducts } = useContext(ProductsContext);
   const { register, control, handleSubmit } = useForm();
   const [erroValidation, setErroValidation] =useState(null);
-  const { fields, append, remove } = useFieldArray({
+  const { fields , append, remove } = useFieldArray({
     control, // control props comes from useForm (optional: if you are using FormContext)
     name: "ingredients", // unique name for your Field Array
   });
@@ -25,20 +25,13 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
       setErroValidation('Esta faltando os ingredientes do produto!')
       return;
     }
-    // convertendo os numeros que estão em string para number
-    /* (data.price = Number(data.price));
-    data.ingredients.forEach((item, index) =>{
-      data.ingredients[index].cost = Number(item.cost);
-      data.ingredients[index].quantity = Number(item.quantity);
-    }); */
-    console.log(data);
     const { 'nextToken': token } = parseCookies();
     try {
       await API(token, data);
     } catch (e) {
-      console.log('deu erro:', e.response);
+      console.log('deu erro:', e);
     }
-    const response = await APIproducts(token, '?page=0&size=3');
+     const response = await APIproducts(token, '?page=0&size=6');
     setProducts(response.content);
     toggle(null);
     setErroValidation(null);
@@ -181,7 +174,7 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
           </Button>
           {' '}
           <Button onClick={ () => toggle(null) }>
-            Cancel
+            Cancelar
           </Button>
         </ModalFooter>
         </Form>
