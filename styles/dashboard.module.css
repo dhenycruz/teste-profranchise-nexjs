@@ -1,14 +1,14 @@
 .containerDash {
-  padding: 0;
   height: 100vh;
+  padding: 0;
 }
 
 .headerDashboard {
-  width: 100%;
+  background-color: #d9d9d9;
   height: 158px;
   position: fixed;
+  width: 100%;
   z-index: 100;
-  background-color: #d9d9d9;
 }
 
 .mainDashboard {
@@ -44,10 +44,10 @@
 }
 
 .positionFixed {
-  width: 100%;
+  background-color: white;
   margin-top: 15px;
   padding: 20px 60px 0 60px;
-  background-color: white;
+  width: 100%;
 }
 
 .rowMarginTop {
@@ -55,15 +55,15 @@
 }
 
 .footerDashboard {
+  align-items: center;
   background-color: #d9d9d9;
   bottom: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 35px;
-  opacity: .9;
+  justify-content: center;
   padding: 20px;
   position: fixed;
+  opacity: .9;
   width: 100%;
   z-index: 100;
 }

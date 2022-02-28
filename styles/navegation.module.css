@@ -6,14 +6,14 @@
 }
 
 .divNav {
+  align-items: center;
   display: flex;
   margin-top: 10px;
-  align-items: center;
 }
 
 .fontNav {
-  display: flex;
   align-items: center;
+  display: flex;
   font-size: 28px;
 }
 

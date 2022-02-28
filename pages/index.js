@@ -1,9 +1,9 @@
-import { useContext } from 'react';
 import Head from 'next/head';
-import { Form, FormGroup, Label, Button} from 'reactstrap';
-import { useForm } from 'react-hook-form';
-import { AuthContext } from '../context/AuthContext';
 import style from '../styles/login.module.css';
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { Form, FormGroup, Label, Button} from 'reactstrap';
 
 const Login = () => {
   const { signIN, errorLogin } = useContext(AuthContext);

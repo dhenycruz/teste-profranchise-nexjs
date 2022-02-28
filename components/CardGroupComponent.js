@@ -8,7 +8,9 @@ import { useContext, useEffect, useState } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
 
 const CardGroupComponent = ({ toggle, toggleUpdate, cssButton }) => {
-  const { products, setProducts, totalProducts, setTotalProducts, fetchProducts } = useContext(ProductsContext);
+  const { 
+    products, setProducts, totalProducts, setTotalProducts, fetchProducts,
+  } = useContext(ProductsContext);
   const [page, setPage] = useState(0);
 
   const getMoreProducts = async () => {
@@ -28,6 +30,7 @@ const CardGroupComponent = ({ toggle, toggleUpdate, cssButton }) => {
   useEffect(() => {
     fetch();
   }, []);
+
   return (
     <>
     <InfiniteScroll
