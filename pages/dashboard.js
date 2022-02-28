@@ -30,6 +30,7 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
     }
   };
 
+
   const toggleDelete = (infoProd) => { setModalInfoProd(infoProd); setDeleteModal(!deleteModal)};
   const toggleUpdate = (infoProd) => { setModalInfoProd(infoProd); setUpdateModal(!updateModal)};
   const toggleCreate = () => { setCreateModal(!createModal)}
