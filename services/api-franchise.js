@@ -20,11 +20,11 @@ const listProducts = async (token, query) => {
   return response.data;
 };
 
-const saveProduct = async (bodyProduct, token) => {
+const saveProduct = async (token, bodyProduct) => {
   const response = await axios({
-    method: 'get',
+    method: 'post',
     url: 'https://prova.deploy.profranchising.com.br/product/save',
-    body: bodyProduct,
+    data: bodyProduct,
     headers: { 'Authorization': token }
   });
 
