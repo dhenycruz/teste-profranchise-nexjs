@@ -6,7 +6,7 @@ const PaginationComponent  = ({ totalPages, setProductAll }) => {
   let items = []
     for (let i = 1; i <= (totalPages - 1); i++) {
       items.push(i)
-    }
+  }
 
   const pageClick = async (page) => {
     const { 'nextToken': token } = parseCookies();

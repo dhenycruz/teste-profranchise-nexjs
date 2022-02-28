@@ -9,12 +9,14 @@ import CardGroupComponent from '../components/CardGroupComponent';
 import ListProduct from '../components/ListProducts';
 import ModalDelete from '../components/ModalDelete';
 import ModalUpdateProduct from '../components/ModalUpdateProduct';
+import ModalCreateProduct from '../components/ModalCreateProduct';
 
 export default function Dashboard ({ userName, listProducts, listTotalPages, totalProducts })  {
   const [viewProduct, setViewProduct] = useState('galery');
   const [deleteModal, setDeleteModal] = useState(false);
   const [modalInfoProd, setModalInfoProd] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
+  const [createModal, setCreateModal] = useState(false);
   
   const changeViewProducts = (viewProd) => {
     setViewProduct(viewProd);
@@ -30,6 +32,7 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
 
   const toggleDelete = (infoProd) => { setModalInfoProd(infoProd); setDeleteModal(!deleteModal)};
   const toggleUpdate = (infoProd) => { setModalInfoProd(infoProd); setUpdateModal(!updateModal)};
+  const toggleCreate = () => { setCreateModal(!createModal)}
 
   return (
     <Container fluid className={ style.containerDash }>
@@ -64,6 +67,7 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
               <Button
                 outline
                 className={ `float-end ${style.buttonActionProduct}` }
+                onClick={ () => toggleCreate(true) }
               >
                 + Adicionar Produto
               </Button>
@@ -125,7 +129,16 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
         deleteModal={ deleteModal }
         infoProduct={ modalInfoProd }
       />
-      <ModalUpdateProduct toggle={ toggleUpdate } updateModal={ updateModal } infoProduct={ modalInfoProd }/>
+      <ModalUpdateProduct
+        toggle={ toggleUpdate }
+        updateModal={ updateModal }
+        infoProduct={ modalInfoProd }
+        createModal={ createModal }
+      />
+      <ModalCreateProduct
+        toggle={ toggleCreate }
+        createModal={ createModal }
+      />
     </main>
     <footer className={ style.footerDashboard }>
       <p className={ style.pFooter }>Desenvolvido por: Dheniarley Cruz</p>
