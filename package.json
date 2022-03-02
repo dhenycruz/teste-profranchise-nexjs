@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +22,9 @@
     "react-hook-form": "^7.27.1",
     "react-infinite-scroll-component": "^6.1.0",
     "reactstrap": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-next": "12.1.0"
   }
 }

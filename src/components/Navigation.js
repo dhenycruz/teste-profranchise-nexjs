@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import style from '../styles/navegation.module.css';
 import { Button } from 'reactstrap';
 import { destroyCookie } from 'nookies';

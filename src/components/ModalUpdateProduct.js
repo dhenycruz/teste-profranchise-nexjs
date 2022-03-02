@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { 
   Modal, ModalHeader, ModalBody, ModalFooter, Button,
   Form, FormGroup, Label,
@@ -11,13 +11,18 @@ import { useContext } from 'react';
 import { ProductsContext } from '../context/ProductsContext';
 
 const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
+  console.log(infoProduct)
   const { setProducts } = useContext(ProductsContext);
-  const [product, setValue] = useState(null);
+
   const [erroValidation, setErroValidation] =useState(null);
-  const { register, control, handleSubmit } = useForm();
+
+  const { register, control, handleSubmit } = useForm({
+      defaultValues: infoProduct
+  });
+
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "ingredients", // unique name for your Field Array
+    name: "ingredients",
   });
 
   const saveProduct = async (data) => {
@@ -37,14 +42,10 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
     setErroValidation(null);
   };
 
-  useEffect(() => {
-    setValue(infoProduct);
-  }, [infoProduct]);
-
   if (!infoProduct) return ( <></>);
   return (
     <>
-      { product && (
+      { infoProduct && (
         <Modal
           centered
           fullscreen="md"
@@ -54,7 +55,7 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
           toggle={ () => toggle(null) }
         >
           <ModalHeader toggle={ () => toggle(null) }>
-            Editando o produto: { product.name }
+            Editando o produto: { infoProduct.name }
           </ModalHeader>
           <ModalBody>
               { erroValidation && 
@@ -67,7 +68,7 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                 { ...register('id') }
                 type="hidden"
                 name="id"
-                value = { product.id }
+                defaultValue={ 'id' }
               />
                 <Row xs={2}>
                   <Col xs={9}>
@@ -79,9 +80,8 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                         { ...register('name') }
                         id="nameProduct"
                         name="name"
-                        value={ product.name }
-                        onChange= { ({ target }) => setValue({ product: { name: target.value }}) }
                         type="text"
+                        defaultValue={ 'name' }
                         className='form-control'
                       />
                     </FormGroup>
@@ -94,9 +94,8 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                       <input
                         { ...register('price') }
                         id="preco"
-                        value={ product.price }
-                        onChange= { ({ target }) => setValue({ product: { price: target.value }}) }
                         type="number"
+                        defaultValues={ 'price' }
                         className='form-control'
                       />
                     </FormGroup>
@@ -107,11 +106,10 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                     Imagem - url
                   </Label>
                   <input
-                    { ...register('image') }
                     id="image"
                     name="image"
-                    value={ product.image }
-                    onChange= { ({ target }) => setValue({ product: { image: target.value }}) }
+                    defaultValues={ 'image' }
+                    { ...register('image') }
                     className="form-control"
                   />
                 </FormGroup>
@@ -119,21 +117,25 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                   Ingredientes
                 </legend>
                 {
-                  infoProduct.ingredients.map((ingredient, index) => (
+                  fields.map((ingredient, index) => (
                     <Row xs={ 3 } key={ index }>
                       <Col xs={ 6 }>
 
-                        <input type="hidden" value={ ingredient.id } />
+                        <input 
+                          type="hidden"
+                          name="id"
+                          defaultValues={`ingredients[${index}].id`}
+                          { ...register(`ingredients.${index.id}`) } />
                         <FormGroup tag="fieldset">
                           <Label for="name">
                             Nome
                           </Label>
                           <input
-                            { ...register(`ingredients.${index}.name`)}
                             id="name"
                             name="name"
-                            value={ product.ingredients[index].name }
-                            onChange= { ({ target }) => setValueIngredients(valueIngredients) }
+                            type="text"
+                            defaultValues={ `ingerdients[${index}].name` }
+                            { ...register(`.ingredients[${index}].name`)}
                             className="form-control"
                           />
                         </FormGroup>
@@ -144,11 +146,11 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                             Quantidade
                           </Label>
                           <input
-                            { ...register(`ingredients.${index}.quantity`)}
                             id="quantity"
                             name="quantity"
-                            value={ ingredient.quantity }
                             type="number"
+                            defaultValues={ `ingredients[${index}].quantity`}
+                            { ...register(`ingredients.${index}.quantity`) }
                             className="form-control"
                           />
                         </FormGroup>
@@ -159,11 +161,11 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                             Custo
                           </Label>
                           <input
-                            { ...register(`ingredients.${index}.cost`) }
                             id="cost"
                             name="cost"
-                            value={ ingredient.cost }
                             type="number"
+                            defaultValues={ `ingredients[${index}].cost`}
+                            { ...register(`ingredients.${index}.cost`) }
                             className="form-control"
                           />
                         </FormGroup>

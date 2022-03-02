@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Table, Button, Row, Col } from "reactstrap";
 import PaginationComponent from "./PaginationComponent";
 import { useState } from "react";

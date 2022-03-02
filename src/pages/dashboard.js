@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import style from '../styles/dashboard.module.css';
 import { Container, Row, Col, Button, InputGroup, Input, InputGroupText, Spinner } from 'reactstrap';
 import { useState } from 'react';
@@ -30,9 +31,8 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
     }
   };
 
-
   const toggleDelete = (infoProd) => { setModalInfoProd(infoProd); setDeleteModal(!deleteModal)};
-  const toggleUpdate = (infoProd) => { setModalInfoProd(infoProd); setUpdateModal(!updateModal)};
+  const toggleUpdate = (infoProd) => { setUpdateModal(!updateModal); setModalInfoProd(infoProd);};
   const toggleCreate = () => { setCreateModal(!createModal)}
 
   return (
@@ -56,10 +56,11 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
               <InputGroup>
                 <Input />
                 <InputGroupText>
-                  <img 
+                  <img
                     src="https://img.icons8.com/ios-filled/50/000000/search--v1.png"
                     alt="Pesquisar"
                     width={ 20 }
+                    height={ 20 }
                   />
                 </InputGroupText>
               </InputGroup>
@@ -130,12 +131,15 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
         deleteModal={ deleteModal }
         infoProduct={ modalInfoProd }
       />
-      <ModalUpdateProduct
-        toggle={ toggleUpdate }
-        updateModal={ updateModal }
-        infoProduct={ modalInfoProd }
-        createModal={ createModal }
-      />
+      { modalInfoProd && (
+        <ModalUpdateProduct
+          toggle={ toggleUpdate }
+          updateModal={ updateModal }
+          infoProduct={ modalInfoProd }
+          createModal={ createModal }
+        /> 
+      )}
+      
       <ModalCreateProduct
         toggle={ toggleCreate }
         createModal={ createModal }
