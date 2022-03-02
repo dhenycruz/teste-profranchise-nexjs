@@ -41,7 +41,7 @@ const CardGroupComponent = ({ toggle, toggleUpdate, cssButton }) => {
       style={ { overflow: 'hidden' } }
     >
       <CardGroup>
-          <Row xs="3">
+          <Row xs="1" md="2" lg="3">
             { products.map((product, index) => (
               <Col className='mb-3' key={index}>
               <Card>

@@ -56,8 +56,8 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
         }
         <ModalBody>
           <Form onSubmit={ handleSubmit(saveProduct) }>
-            <Row xs={2}>
-              <Col xs={9}>
+            <Row xs="1" sm="2" md="2" lg="2">
+              <Col sm="9" md="9" lg="9">
                 <FormGroup>
                   <Label for="name">
                     Nome
@@ -72,7 +72,7 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
                   />
                 </FormGroup>
               </Col>
-              <Col xs={3}>
+              <Col sm="3" md="3" lg="3">
                 <FormGroup>
                   <Label for="price">
                     Preço
@@ -103,8 +103,8 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
               Ingredientes
             </legend>
               { fields.map((field, index) => (
-                <Row xs={ 4 } key={index}>
-                  <Col xs={ 6 }>
+                <Row xs="1" sm="3" md="3" lg="3" key={index}>
+                  <Col sm="6" md="6" lg="6">
                     <FormGroup tag="fieldset">
                       <Label for="name">
                         Nome
@@ -117,7 +117,7 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
                       />
                     </FormGroup>
                   </Col>
-                  <Col xs={ 3 }>
+                  <Col sm="3" md="3" lg="3">
                     <FormGroup>
                       <Label for="quantity">
                         Quantidade
@@ -132,7 +132,7 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
                       />
                     </FormGroup>
                   </Col>
-                  <Col xs= { 3 }>
+                  <Col sm="3" md="3" lg="3">
                   <FormGroup>
                       <Label for="cost">
                         Custo

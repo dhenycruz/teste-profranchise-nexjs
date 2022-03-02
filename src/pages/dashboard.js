@@ -48,11 +48,11 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
               <h1 className={ style.titleDashboard }>Dashboard</h1>
             </Col>
           </Row>
-          <Row xs="3">
-            <Col>
+          <Row xs="1" sm="1" md="3" lg="3">
+            <Col md="6">
               <h2 className={ style.subTitleDashboard }>Lista de Produtos</h2>
             </Col>
-            <Col>
+            <Col md="6">
               <InputGroup>
                 <Input />
                 <InputGroupText>
@@ -65,7 +65,7 @@ export default function Dashboard ({ userName, listProducts, listTotalPages, tot
                 </InputGroupText>
               </InputGroup>
             </Col>
-            <Col>
+            <Col xs="12" md="12" className="mb-2 mt-2">
               <Button
                 outline
                 className={ `float-end ${style.buttonActionProduct}` }
