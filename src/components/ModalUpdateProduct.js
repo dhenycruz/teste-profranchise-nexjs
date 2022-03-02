@@ -95,6 +95,8 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                         { ...register('price') }
                         id="preco"
                         type="number"
+                        min="0"
+                        step="0.1"
                         defaultValues={ 'price' }
                         className='form-control'
                       />
@@ -148,6 +150,7 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                           <input
                             id="quantity"
                             name="quantity"
+                            min="1"
                             type="number"
                             defaultValues={ `ingredients[${index}].quantity`}
                             { ...register(`ingredients.${index}.quantity`) }
@@ -163,6 +166,8 @@ const ModalUpdateProduct = ({ toggle, updateModal, infoProduct }) => {
                           <input
                             id="cost"
                             name="cost"
+                            min="0"
+                            step="0.1"
                             type="number"
                             defaultValues={ `ingredients[${index}].cost`}
                             { ...register(`ingredients.${index}.cost`) }

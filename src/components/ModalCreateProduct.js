@@ -80,6 +80,8 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
                   <input
                     type="number"
                     { ...register('price') }
+                    min="0"
+                    step="0.1"
                     id="price"
                     name="price"
                     className='form-control'
@@ -123,11 +125,14 @@ const ModalCreateProduct = ({ createModal, toggle}) => {
                         Quantidade
                       </Label>
                       <input
+                        id="quantity"
                         type='number'
+                        name="quantity"
+                        min="1"
+                        step="0,1"
                         { ...register(`ingredients.${index}.quantity`, {
                           maxLength: 1
                         })}
-                        id="quantity"
                         className="form-control"
                       />
                     </FormGroup>

@@ -2,6 +2,7 @@ import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import { parseCookies } from "nookies";
 import { listProducts as Api } from '../services/api-franchise';
 
+
 const PaginationComponent  = ({ totalPages, setProductAll }) => {
   let items = []
     for (let i = 1; i <= (totalPages - 1); i++) {
@@ -11,14 +12,12 @@ const PaginationComponent  = ({ totalPages, setProductAll }) => {
   const pageClick = async (page) => {
     const { 'nextToken': token } = parseCookies();
     const res = await Api(token, `?page=${page}&size=10`);
-    console.log(page)
-    console.log(res.content);
     setProductAll(res.content);
   };
 
   return (
     <Pagination aria-label="Page navigation example">
-      <PaginationItem>
+      <PaginationItem onClick={ () => pageClick(0) }>
         <PaginationLink
           first
         />
@@ -28,14 +27,14 @@ const PaginationComponent  = ({ totalPages, setProductAll }) => {
           previous
         />
       </PaginationItem>
-      <PaginationItem active={ true } onClick={ () => pageClick(0)}>
+      <PaginationItem onClick={ () => pageClick(0)}>
             <PaginationLink >
               1
             </PaginationLink>
           </PaginationItem>
       {
         items.map((item, index) => (
-          <PaginationItem key={ index } active={ false } onClick={ () => pageClick(item) }>
+          <PaginationItem key={ index } onClick={ () => pageClick(item) }>
             <PaginationLink>
               { item + 1 }
             </PaginationLink>
@@ -46,7 +45,7 @@ const PaginationComponent  = ({ totalPages, setProductAll }) => {
           next
         />
       </PaginationItem>
-      <PaginationItem>
+      <PaginationItem onClick={ () => pageClick(totalPages -1) }>
         <PaginationLink
           last
         />
