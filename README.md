@@ -1,6 +1,6 @@
 # Teste: Criar uma aplicação FRONT-END
  
- - Esse é o repositório do teste para a empresa PROFRANCHAISE.
+ - Esse é o repositório do teste para a empresa PROFRANCHISING.
  - o teste tem como objetivo desenvolver uma aplicação FRONT-END
  - implementando as Rotas REST API;
  - Essa aplicação ira resolver o cadastro de produtos e suas receitas.
