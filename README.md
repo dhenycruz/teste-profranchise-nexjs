@@ -45,8 +45,7 @@ Para realização de projeto foi utilizado:
     * `npm start` (uma nova página deve abrir no seu navegador com a aplicação rodando)
 
 # Para ver o projeto em produção basta acessar o link abaixo:
-  * Um link aqui
-
+  * https://dheniarley-test-profranchising.herokuapp.com/
 # O que foi desenvolvido?
 
 1. TELA DE LOGIN:
